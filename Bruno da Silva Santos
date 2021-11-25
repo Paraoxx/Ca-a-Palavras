@@ -1,0 +1,148 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int main()
+{
+    int i, j, k, n, p, t; 
+ 
+    int encontrada; // SIM = 1. NÃO = 0.
+ 
+    char matriz[25][25], palavra[25][25];
+ 
+    printf("BEM-VINDO AO JOGO DE CACA-PALAVRAS\nDIGITE O TAMANHO DA MATRIZ NXN: ");
+    scanf("%d", &n);
+ 
+    printf("DIGITE AS LETRAS DA MATRIZ:\n");
+ 
+    for (i = 0; i < n; i++)
+        scanf("%s", matriz[i]);
+ 
+    printf("DIGITE O NUMERO DE PALAVRAS DESEJADO: ");
+    scanf("%d", &p);
+ 
+    printf("DIGITE AS PALAVRAS:\n");
+ 
+    for (i = 0; i < p; i++)
+        scanf("%s", palavra[i]); 
+ 
+    printf("RESULTADO:\n");
+ 
+    for (k = 0; k < p; k++) 
+    {
+        encontrada = 0;
+ 
+        for (i = 0; i < n; i++) 
+        {
+            for (j = 0; j < n; j++) 
+            {
+                if (palavra[k][0] == matriz[i][j]) 
+                {
+                    if (palavra[k][1] == matriz[i - 1][j])
+                    {
+                        encontrada = 1;
+ 
+                        for (t = 0; t < strlen(palavra[k]); t++)
+                            if (palavra[k][t] != matriz[i - t][j])
+                                encontrada = 0;
+ 
+                        if (encontrada)
+                            break;
+                    }
+ 
+                    if (palavra[k][1] == matriz[i + 1][j]) 
+                    {
+                        encontrada = 1;
+ 
+                        for (t = 0; t < strlen(palavra[k]); t++)
+                            if (palavra[k][t] != matriz[i + t][j])
+                                encontrada = 0;
+ 
+                        if (encontrada)
+                            break;
+                    }
+ 
+                    if (palavra[k][1] == matriz[i][j + 1]) 
+                    {
+                        encontrada = 1;
+ 
+                        for (t = 0; t < strlen(palavra[k]); t++)
+                            if (palavra[k][t] != matriz[i][j + t])
+                                encontrada = 0;
+ 
+                        if (encontrada)
+                            break;
+                    }
+ 
+                    if (palavra[k][1] == matriz[i][j - 1]) 
+                    {
+                        encontrada = 1;
+ 
+                        for (t = 0; t < strlen(palavra[k]); t++)
+                            if (palavra[k][t] != matriz[i][j - t])
+                                encontrada = 0;
+ 
+                        if (encontrada)
+                            break;
+                    }
+ 
+                    if (palavra[k][1] == matriz[i - 1][j + 1]) 
+                    {
+                        encontrada = 1;
+ 
+                        for (t = 0; t < strlen(palavra[k]); t++)
+                            if (palavra[k][t] != matriz[i - t][j + t])
+                                encontrada = 0;
+ 
+                        if (encontrada)
+                            break;
+                    }
+ 
+                    if (palavra[k][1] == matriz[i - 1][j - 1]) 
+                    {
+                        encontrada = 1;
+ 
+                        for (t = 0; t < strlen(palavra[k]); t++)
+                            if (palavra[k][t] != matriz[i - t][j - t])
+                                encontrada = 0;
+ 
+                        if (encontrada)
+                            break;
+                    }
+ 
+                    if (palavra[k][1] == matriz[i + 1][j + 1]) 
+                    {
+                        encontrada = 1;
+ 
+                        for (t = 0; t < strlen(palavra[k]); t++)
+                            if (palavra[k][t] != matriz[i + t][j + t])
+                                encontrada = 0;
+ 
+                        if (encontrada)
+                            break;
+                    }
+ 
+                    if (palavra[k][1] == matriz[i + 1][j - 1]) 
+                    {
+                        encontrada = 1;
+ 
+                        for (t = 0; t < strlen(palavra[k]); t++)
+                            if (palavra[k][t] != matriz[i + t][j - t])
+                                encontrada = 0;
+ 
+                        if (encontrada)
+                            break;
+                    }
+                }
+            }
+ 
+            if (encontrada)
+                break;
+        }
+ 
+        if (encontrada)
+            printf("%s - PALAVRA ENCONTRADA\n", palavra[k]);
+        else
+            printf("%s - PALAVRA NAO ENCONTRADA\n", palavra[k]);
+    }
+}
